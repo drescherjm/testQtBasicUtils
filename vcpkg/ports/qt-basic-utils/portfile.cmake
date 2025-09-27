@@ -1,10 +1,10 @@
-set(GIT_REF_of_library e90bc3b5a4721c590d22603019846191120bbc2a)
+set(GIT_REF_of_library 614ec6c4aa2860bceb314eb28fa085c6db1b4a5a)
 
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO drescherjm/QtBasicUtils
     REF ${GIT_REF_of_library} 
-    SHA512 180ae6562e9d56d12ece34b986bc7ebe247262e66b361873c3be1fdc6132e38ec6bc5a758f779d353b5e9703cbf2abe0fefc262a8947c84d3d5510f36a597266
+    SHA512 6157f7b605c0d8974de79c36d9c49956d35a96d15e74eb503358ffa8cff7f1120ed1b6dcdd512cafc9a8265d59b095b9d5f40f0bbf3feb8ea487b5a3f1ac7448
 	#Note: The SHA512 will need to change if you change the GIT_REF_of_library. The next CMake configure will fail and tell you
 	#the new SHA512 code. Copy and paste the note: Actual  : SHA512 hash code above.
 )

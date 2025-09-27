@@ -35,12 +35,18 @@
 		  },
 		  "qtbase",
 		  "qttools",
-		"qtscxml",
+		  "qtscxml",
 		  {
 			"name": "qt-basic-utils",
 			"features": [
 			  "qt6"
 			]
+		  },
+		  {
+			  "name": "qxt",
+			  "features": [
+				"qt6"
+			  ]					
 		  }
 		]
 	  }

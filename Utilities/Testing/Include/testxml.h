@@ -1,0 +1,21 @@
+#pragma once
+
+#ifndef TESTXML_H
+#define TESTXML_H
+
+#include "qbuCmdLine/QCmd.h"
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+class QCmdTestXMLExport : public QCmd
+{
+public:
+	QCmdTestXMLExport(QString strName, QString strDescription);
+	virtual int Execute();
+    bool test12();
+};
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+#endif // TESTXML_H
+

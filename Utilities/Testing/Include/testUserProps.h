@@ -1,0 +1,19 @@
+#pragma once
+
+#ifndef TESTUSERPROPS_H
+#define TESTUSERPROPS_H
+
+#include "qbuCmdLine/QCmd.h"
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+class QCmdTestUserProps : public QCmd
+{
+public:
+	QCmdTestUserProps(QString strName, QString strDescription);
+	virtual int Execute();
+};
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+#endif // TESTUSERPROPS_H
