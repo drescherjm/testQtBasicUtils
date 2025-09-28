@@ -1,9 +1,7 @@
-set(GIT_REF_of_library 94ba8c905bd558d680a5557f62dc7fcb9b93fa00)
-
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO drescherjm/QtBasicUtils
-    REF ${GIT_REF_of_library} 
+    REF 788c467fbd9f138900ac41812dab658660cf1068
     SHA512 a2b39f7b3e0621fa3c2dafa4eb7d8e2d03a89e125770a208c440fe4fff5dd56e41d869e5bdec2f0e0dbcf06bdd7bba47fbdc10f7030314487413abbf44207c2b
 )
 
