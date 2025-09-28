@@ -4,7 +4,7 @@ vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO drescherjm/QtBasicUtils
     REF ${GIT_REF_of_library} 
-    SHA512 4cc79bfa8f177d2d10dc328ab0daa76ec6f25abad9fb0f213fcd3d79ebe05f4de439bcaaad89d62a49060d4a276c844ec4760bacecf9b15a53bd06e08e63b700
+    SHA512 a2b39f7b3e0621fa3c2dafa4eb7d8e2d03a89e125770a208c440fe4fff5dd56e41d869e5bdec2f0e0dbcf06bdd7bba47fbdc10f7030314487413abbf44207c2b
 )
 
 vcpkg_cmake_configure(
