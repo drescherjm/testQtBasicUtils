@@ -1,12 +1,26 @@
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO drescherjm/QtBasicUtils
-    REF 788c467fbd9f138900ac41812dab658660cf1068
-    SHA512 a2b39f7b3e0621fa3c2dafa4eb7d8e2d03a89e125770a208c440fe4fff5dd56e41d869e5bdec2f0e0dbcf06bdd7bba47fbdc10f7030314487413abbf44207c2b
+    REF 31d3475c2385297c83d52d8eb96db0c1e1b2d14f
+    SHA512 5bd5b1a6dcf3d0ea1cb5a9d85f32e42472c76f2b76fe8d8998a56344fdfc9aea1156d70bac4eb2eae5c192ed441a44a9754cc933f6e61b9c26822ab1e8eb0e56
 )
 
-vcpkg_cmake_configure(
-    SOURCE_PATH "${SOURCE_PATH}"
+set(CONFIGURE_OPTIONS)
+
+if("qt5" IN_LIST FEATURES AND "qt6" IN_LIST FEATURES)
+    message(FATAL_ERROR "Features 'qt5' and 'qt6' cannot be used together.")
+elseif("qt5" IN_LIST FEATURES)
+    list(APPEND CONFIGURE_OPTIONS -DSELECT_QT_VERSION="Qt5")
+elseif("qt6" IN_LIST FEATURES)
+    list(APPEND CONFIGURE_OPTIONS -DSELECT_QT_VERSION="Qt6")
+else()
+    message(FATAL_ERROR "Either 'qt5' or 'qt6' must be enabled.")
+endif()
+
+vcpkg_configure_cmake(
+    SOURCE_PATH ${SOURCE_PATH}
+    PREFER_NINJA
+    OPTIONS ${CONFIGURE_OPTIONS}
 )
 
 vcpkg_cmake_build()

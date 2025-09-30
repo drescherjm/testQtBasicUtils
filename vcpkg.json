@@ -11,7 +11,8 @@
 			"features": [
 			  "qt5"
 			],
-			"platform": "linux"
+			"platform": "linux",
+			"default-features": false
 		  },
 		  "qt5-base",
 		  "qt5-tools",
@@ -19,7 +20,8 @@
 			"name": "qt-basic-utils",
 			"features": [
 			  "qt5"
-			]
+			],
+			"default-features": false
 		  }
 		]
 	  },
@@ -31,7 +33,8 @@
 			"features": [
 			  "qt6"
 			],
-			"platform": "linux"
+			"platform": "linux",
+			"default-features": false
 		  },
 		  "qtbase",
 		  "qttools",
@@ -40,15 +43,20 @@
 			"name": "qt-basic-utils",
 			"features": [
 			  "qt6"
-			]
+			],
+			"default-features": false
 		  },
 		  {
 			  "name": "qxt",
 			  "features": [
 				"qt6"
-			  ]					
+			  ],
+			   "default-features": false				
 		  }
 		]
 	  }
-	}
+	},
+  "default-features": [
+
+  ]
 }

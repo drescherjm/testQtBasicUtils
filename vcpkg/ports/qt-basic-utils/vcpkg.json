@@ -7,9 +7,9 @@
     "vcpkg-cmake",
     "vcpkg-cmake-config",
     "boost-core",
-	"boost-multi-index",
-	"boost-bimap",
-	"cmake-modules"
+	  "boost-multi-index",
+	  "boost-bimap",
+	  "cmake-modules"
   ],
   "features": {
     "qt5": {
@@ -53,5 +53,7 @@
         }
       ]
     }
-  }
+  },
+  "default-features": [
+  ]
 }
