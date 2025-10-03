@@ -11,6 +11,8 @@ set_property(CACHE SELECT_QT_VERSION PROPERTY STRINGS "Qt5" "Qt6")
 # With vcpkg features must be lowercase so we convert to qt5 and qt6 with the following:
 string(TOLOWER "${SELECT_QT_VERSION}" VCPKG_FEATURE_NAME)
 
+message(STATUS VCPKG_MANIFEST_FEATURES=${VCPKG_MANIFEST_FEATURES}\nSELECT_QT_VERSION=${SELECT_QT_VERSION})
+
 #Tell vcpkg the feature to use!
 list(APPEND VCPKG_MANIFEST_FEATURES ${VCPKG_FEATURE_NAME})
 
