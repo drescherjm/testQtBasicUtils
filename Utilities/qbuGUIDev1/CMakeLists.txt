@@ -1,17 +1,5 @@
 myproject(qbuGUIDev1)
 
-# if(${PROJECT_NAME}_QT_VERSION VERSION_GREATER "4")
-	# set (QT_MODULES ${QT_MODULES} Qt${QT_VERSION_MAJOR}::Designer )
-	
-	# find_qt5_packages()
-# endif()
-
-#set(QXT_FIND_COMPONENTS QxtCore QxtGui)
-#set(QXT_USE_QXTCORE TRUE)
-
-#print_list( "${LOCAL_PROJECT_NAME}\nQXT_LIBRARIES=" ${QXT_LIBRARIES} )
-#SupportQxt()
-
 include_directories(
 	Include 
 	../Include
@@ -73,8 +61,5 @@ add_executable(${LOCAL_PROJECT_NAME} ${${LOCAL_PROJECT_NAME}_SRCS}
 	${${LOCAL_PROJECT_NAME}_UI_HDRS}
 )
 
-print_list( "${LOCAL_PROJECT_NAME}\nQXT_LIBRARIES=" ${QXT_LIBRARIES} )
-
 target_link_libraries(${LOCAL_PROJECT_NAME}  Qbu::qbuLog)
-
 set_target_properties(${LOCAL_PROJECT_NAME} PROPERTIES FOLDER Development)

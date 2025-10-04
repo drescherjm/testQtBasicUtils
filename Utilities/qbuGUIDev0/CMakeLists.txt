@@ -1,5 +1,7 @@
 myproject(qbuGUIDev0)
 
+if (TARGET Qbu::qbuWidgets)
+
 if(${PROJECT_NAME}_QT_VERSION VERSION_GREATER "4")
 	set (QT_MODULES ${QT_MODULES} Qt${QT_VERSION_MAJOR}::Designer )
 	
@@ -67,6 +69,8 @@ add_executable(${LOCAL_PROJECT_NAME} ${${LOCAL_PROJECT_NAME}_SRCS}
 	${${LOCAL_PROJECT_NAME}_UI_HDRS}
 )
 
-target_link_libraries(${LOCAL_PROJECT_NAME}  ${QT_LIBRARIES} qbuWidgets)
+target_link_libraries(${LOCAL_PROJECT_NAME} Qbu::qbuWidgets Qbu::qbuBase)
 
 set_target_properties(${LOCAL_PROJECT_NAME} PROPERTIES FOLDER Development)
+
+endif(TARGET Qbu::qbuWidgets)

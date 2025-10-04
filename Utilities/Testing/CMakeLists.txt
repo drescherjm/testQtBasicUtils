@@ -43,9 +43,6 @@ set(TEST_HDRS
 )
 
 add_executable(BasicTest ${TEST_SRCS} ${TEST_HDRS})
-
-target_link_libraries(BasicTest PRIVATE ${QT_LIBRARIES} ${QXT_LIBRARIES})
-
 target_link_libraries(BasicTest PRIVATE Qbu::qbuDataBase Qbu::qbuBase Qbu::qbuCmdLine)
 
 Include(UnitTests.cmake)
@@ -60,3 +57,5 @@ if (QT_VERSION_MAJOR EQUAL 6)
 		)
 	endif()
 endif()
+
+set_target_properties(${LOCAL_PROJECT_NAME} PROPERTIES FOLDER UnitTests)
