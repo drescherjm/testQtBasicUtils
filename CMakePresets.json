@@ -143,6 +143,19 @@
         "VCPKG_MANIFEST_FEATURES": "qt6",
         "SELECT_QT_VERSION": "Qt6"
       }
+    },
+    {
+      "name": "qt6-vcpkg-vs2022-debug",
+      "inherits": "base-vcpkg",
+      "generator": "Visual Studio 17 2022",
+      "description": "Qt6 build using Visual Studio 2022 and vcpkg",
+      "binaryDir": "${sourceDir}/build/Debug",
+      "architecture": { "value": "x64" },
+      "cacheVariables": {
+		"CMAKE_BUILD_TYPE": "Debug",
+        "VCPKG_MANIFEST_FEATURES": "qt6",
+        "SELECT_QT_VERSION": "Qt6"
+      }
     }
   ],
 
@@ -154,6 +167,18 @@
   {
     "name": "qt6-vcpkg-ninja",
     "configurePreset": "qt6-vcpkg-ninja"
+  },
+  {
+	"name": "qt5-vcpkg-vs2022",
+	"configurePreset":  "qt5-vcpkg-vs2022"
+  },
+  {
+	"name": "qt6-vcpkg-vs2022",
+	"configurePreset":  "qt6-vcpkg-vs2022"
+  },
+  {
+	"name": "qt6-vcpkg-vs2022-debug",
+	"configurePreset":  "qt6-vcpkg-vs2022-debug"
   }
   ],
   "testPresets": [
@@ -214,7 +239,13 @@
       "configurePreset": "qt6-vcpkg-ninja-cppcheck",
       "description": "Qt6 build with cppcheck checks",
       "output": { "outputOnFailure": true }
-    }
+    },
+	{
+	  "name": "qt6-vcpkg-vs2022-debug",
+	  "configurePreset": "qt6-vcpkg-vs2022-debug",
+	  "description": "Run unit tests for qt6-vcpkg-vs2022",
+	  "output": { "outputOnFailure": true }
+	}
   ],
 
   "workflowPresets": [
@@ -233,6 +264,21 @@
         { "type": "build", "name": "qt6-vcpkg-ninja" },
         { "type": "test", "name": "valgrind-memcheck-qt6" }
       ]
-    }
+    },
+	{
+	   "name": "qt5-vcpkg-vs2022",
+	   "steps": [
+		    { "type": "configure", "name": "qt5-vcpkg-vs2022" },
+			{ "type": "build", "name": "qt5-vcpkg-vs2022" }	
+		]
+	},
+	{
+	   "name": "qt6-vcpkg-vs2022-debug",
+	   "steps": [
+		    { "type": "configure", "name": "qt6-vcpkg-vs2022-debug" },
+			{ "type": "build", "name": "qt6-vcpkg-vs2022-debug" },
+			{ "type": "test", "name": "qt6-vcpkg-vs2022-debug" }
+		]
+	}
   ]
 }
