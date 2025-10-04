@@ -5,6 +5,7 @@
     "minor": 21,
     "patch": 0
   },
+
   "configurePresets": [
     {
       "name": "base-vcpkg",
@@ -20,10 +21,39 @@
       "inherits": "base-vcpkg",
       "generator": "Ninja",
       "description": "Qt5 build using Ninja and vcpkg",
-      "binaryDir": "${sourceDir}/build",
+      "binaryDir": "${sourceDir}/build/qt5-ninja",
       "cacheVariables": {
         "VCPKG_MANIFEST_FEATURES": "qt5",
         "SELECT_QT_VERSION": "Qt5"
+      }
+    },
+    {
+      "name": "qt5-vcpkg-ninja-asan",
+      "inherits": "qt5-vcpkg-ninja",
+      "description": "Qt5 build with Address + Undefined sanitizers",
+      "binaryDir": "${sourceDir}/build/qt5-ninja-asan",
+      "cacheVariables": {
+        "CMAKE_C_FLAGS": "-fsanitize=address,undefined -fno-omit-frame-pointer",
+        "CMAKE_CXX_FLAGS": "-fsanitize=address,undefined -fno-omit-frame-pointer",
+        "CMAKE_LINKER_FLAGS": "-fsanitize=address,undefined"
+      }
+    },
+    {
+      "name": "qt5-vcpkg-ninja-clangtidy",
+      "inherits": "qt5-vcpkg-ninja",
+      "description": "Qt5 build with clang-tidy analysis enabled",
+      "binaryDir": "${sourceDir}/build/qt5-ninja-clangtidy",
+      "cacheVariables": {
+        "CMAKE_CXX_CLANG_TIDY": "clang-tidy;-checks=*"
+      }
+    },
+    {
+      "name": "qt5-vcpkg-ninja-cppcheck",
+      "inherits": "qt5-vcpkg-ninja",
+      "description": "Qt5 build with cppcheck analysis enabled",
+      "binaryDir": "${sourceDir}/build/qt5-ninja-cppcheck",
+      "cacheVariables": {
+        "CMAKE_CXX_CPPCHECK": "cppcheck;--enable=all;--inconclusive;--force"
       }
     },
     {
@@ -31,10 +61,39 @@
       "inherits": "base-vcpkg",
       "generator": "Ninja",
       "description": "Qt6 build using Ninja and vcpkg",
-      "binaryDir": "${sourceDir}/build",
+      "binaryDir": "${sourceDir}/build/qt6-ninja",
       "cacheVariables": {
         "VCPKG_MANIFEST_FEATURES": "qt6",
         "SELECT_QT_VERSION": "Qt6"
+      }
+    },
+    {
+      "name": "qt6-vcpkg-ninja-asan",
+      "inherits": "qt6-vcpkg-ninja",
+      "description": "Qt6 build with Address + Undefined sanitizers",
+      "binaryDir": "${sourceDir}/build/qt6-ninja-asan",
+      "cacheVariables": {
+        "CMAKE_C_FLAGS": "-fsanitize=address,undefined -fno-omit-frame-pointer",
+        "CMAKE_CXX_FLAGS": "-fsanitize=address,undefined -fno-omit-frame-pointer",
+        "CMAKE_LINKER_FLAGS": "-fsanitize=address,undefined"
+      }
+    },
+    {
+      "name": "qt6-vcpkg-ninja-clangtidy",
+      "inherits": "qt6-vcpkg-ninja",
+      "description": "Qt6 build with clang-tidy analysis enabled",
+      "binaryDir": "${sourceDir}/build/qt6-ninja-clangtidy",
+      "cacheVariables": {
+        "CMAKE_CXX_CLANG_TIDY": "clang-tidy;-checks=*"
+      }
+    },
+    {
+      "name": "qt6-vcpkg-ninja-cppcheck",
+      "inherits": "qt6-vcpkg-ninja",
+      "description": "Qt6 build with cppcheck analysis enabled",
+      "binaryDir": "${sourceDir}/build/qt6-ninja-cppcheck",
+      "cacheVariables": {
+        "CMAKE_CXX_CPPCHECK": "cppcheck;--enable=all;--inconclusive;--force"
       }
     },
     {
@@ -92,6 +151,93 @@
         "VCPKG_MANIFEST_FEATURES": "qt6",
         "SELECT_QT_VERSION": "Qt6"
       }
+    }
+  ],
+
+  "testPresets": [
+    {
+      "name": "valgrind-memcheck-qt5",
+      "configurePreset": "qt5-vcpkg-ninja",
+      "description": "Run Qt5 tests under Valgrind memcheck",
+      "execution": { "jobs": 1 },
+      "output": { "outputOnFailure": true },
+      "environment": {
+        "CTEST_MEMORYCHECK_COMMAND": "bash",
+        "CTEST_MEMORYCHECK_COMMAND_OPTIONS": "-c 'ulimit -n 65536 && exec valgrind --tool=memcheck --leak-check=full --track-origins=yes --error-exitcode=1 --xml=yes --xml-file=valgrind-qt5-%p.xml'"
+      }
+    },
+    {
+      "name": "valgrind-memcheck-qt6",
+      "configurePreset": "qt6-vcpkg-ninja",
+      "description": "Run Qt6 tests under Valgrind memcheck",
+      "execution": { "jobs": 1 },
+      "output": { "outputOnFailure": true },
+      "environment": {
+        "CTEST_MEMORYCHECK_COMMAND": "bash",
+        "CTEST_MEMORYCHECK_COMMAND_OPTIONS": "-c 'ulimit -n 65536 && exec valgrind --tool=memcheck --leak-check=full --track-origins=yes --error-exitcode=1 --xml=yes --xml-file=valgrind-qt6-%p.xml'"
+      }
+    }
+  ],
+  "workflowPresets": [
+    {
+      "name": "analyze-with-valgrind-qt5",
+      "steps": [
+        { "type": "configure", "name": "qt5-vcpkg-ninja" },
+        { "type": "build", "name": "qt5-vcpkg-ninja" },
+        { "type": "test", "name": "valgrind-memcheck-qt5" }
+      ]
+    },
+    {
+      "name": "analyze-with-valgrind-qt6",
+      "steps": [
+        { "type": "configure", "name": "qt6-vcpkg-ninja" },
+        { "type": "build", "name": "qt6-vcpkg-ninja" },
+        { "type": "test", "name": "valgrind-memcheck-qt6" }
+      ]
+    },
+    {
+      "name": "analyze-with-asan-qt5",
+      "steps": [
+        { "type": "configure", "name": "qt5-vcpkg-ninja-asan" },
+        { "type": "build", "name": "qt5-vcpkg-ninja-asan" },
+        { "type": "test", "name": "qt5-vcpkg-ninja-asan" }
+      ]
+    },
+    {
+      "name": "analyze-with-asan-qt6",
+      "steps": [
+        { "type": "configure", "name": "qt6-vcpkg-ninja-asan" },
+        { "type": "build", "name": "qt6-vcpkg-ninja-asan" },
+        { "type": "test", "name": "qt6-vcpkg-ninja-asan" }
+      ]
+    },
+    {
+      "name": "analyze-with-clangtidy-qt5",
+      "steps": [
+        { "type": "configure", "name": "qt5-vcpkg-ninja-clangtidy" },
+        { "type": "build", "name": "qt5-vcpkg-ninja-clangtidy" }
+      ]
+    },
+    {
+      "name": "analyze-with-clangtidy-qt6",
+      "steps": [
+        { "type": "configure", "name": "qt6-vcpkg-ninja-clangtidy" },
+        { "type": "build", "name": "qt6-vcpkg-ninja-clangtidy" }
+      ]
+    },
+    {
+      "name": "analyze-with-cppcheck-qt5",
+      "steps": [
+        { "type": "configure", "name": "qt5-vcpkg-ninja-cppcheck" },
+        { "type": "build", "name": "qt5-vcpkg-ninja-cppcheck" }
+      ]
+    },
+    {
+      "name": "analyze-with-cppcheck-qt6",
+      "steps": [
+        { "type": "configure", "name": "qt6-vcpkg-ninja-cppcheck" },
+        { "type": "build", "name": "qt6-vcpkg-ninja-cppcheck" }
+      ]
     }
   ]
 }
