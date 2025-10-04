@@ -23,7 +23,7 @@
       "binaryDir": "${sourceDir}/build",
       "cacheVariables": {
         "VCPKG_MANIFEST_FEATURES": "qt5",
-        "SELECTED_QT_VERSION": "Qt5"
+        "SELECT_QT_VERSION": "Qt5"
       }
     },
     {
@@ -34,7 +34,7 @@
       "binaryDir": "${sourceDir}/build",
       "cacheVariables": {
         "VCPKG_MANIFEST_FEATURES": "qt6",
-        "SELECTED_QT_VERSION": "Qt6"
+        "SELECT_QT_VERSION": "Qt6"
       }
     },
     {
@@ -48,7 +48,7 @@
       },
       "cacheVariables": {
         "VCPKG_MANIFEST_FEATURES": "qt5",
-        "SELECTED_QT_VERSION": "Qt5"
+        "SELECT_QT_VERSION": "Qt5"
       }
     },
     {
@@ -62,7 +62,7 @@
       },
       "cacheVariables": {
         "VCPKG_MANIFEST_FEATURES": "qt6",
-        "SELECTED_QT_VERSION": "Qt6"
+        "SELECT_QT_VERSION": "Qt6"
       }
     },
     {
@@ -76,7 +76,7 @@
       },
       "cacheVariables": {
         "VCPKG_MANIFEST_FEATURES": "qt5",
-        "SELECTED_QT_VERSION": "Qt5"
+        "SELECT_QT_VERSION": "Qt5"
       }
     },
     {
@@ -90,7 +90,7 @@
       },
       "cacheVariables": {
         "VCPKG_MANIFEST_FEATURES": "qt6",
-        "SELECTED_QT_VERSION": "Qt6"
+        "SELECT_QT_VERSION": "Qt6"
       }
     }
   ]
