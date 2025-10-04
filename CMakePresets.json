@@ -143,19 +143,6 @@
         "VCPKG_MANIFEST_FEATURES": "qt6",
         "SELECT_QT_VERSION": "Qt6"
       }
-    },
-    {
-      "name": "qt6-vcpkg-vs2022-debug",
-      "inherits": "base-vcpkg",
-      "generator": "Visual Studio 17 2022",
-      "description": "Qt6 build using Visual Studio 2022 and vcpkg",
-      "binaryDir": "${sourceDir}/build/Debug",
-      "architecture": { "value": "x64" },
-      "cacheVariables": {
-		"CMAKE_BUILD_TYPE": "Debug",
-        "VCPKG_MANIFEST_FEATURES": "qt6",
-        "SELECT_QT_VERSION": "Qt6"
-      }
     }
   ],
 
@@ -178,7 +165,13 @@
   },
   {
 	"name": "qt6-vcpkg-vs2022-debug",
-	"configurePreset":  "qt6-vcpkg-vs2022-debug"
+	"configurePreset":  "qt6-vcpkg-vs2022",
+	"configuration": "Debug"
+  },
+  {
+	"name": "qt6-vcpkg-vs2022-release",
+	"configurePreset":  "qt6-vcpkg-vs2022",
+	"configuration": "Release"
   }
   ],
   "testPresets": [
@@ -242,8 +235,16 @@
     },
 	{
 	  "name": "qt6-vcpkg-vs2022-debug",
-	  "configurePreset": "qt6-vcpkg-vs2022-debug",
+	  "configurePreset": "qt6-vcpkg-vs2022",
 	  "description": "Run unit tests for qt6-vcpkg-vs2022",
+	  "configuration": "Debug",
+	  "output": { "outputOnFailure": true }
+	},
+	{
+	  "name": "qt6-vcpkg-vs2022-release",
+	  "configurePreset": "qt6-vcpkg-vs2022",
+	  "description": "Run unit tests for qt6-vcpkg-vs2022",
+	  "configuration": "Release",
 	  "output": { "outputOnFailure": true }
 	}
   ],
@@ -275,9 +276,17 @@
 	{
 	   "name": "qt6-vcpkg-vs2022-debug",
 	   "steps": [
-		    { "type": "configure", "name": "qt6-vcpkg-vs2022-debug" },
+		    { "type": "configure", "name": "qt6-vcpkg-vs2022" },
 			{ "type": "build", "name": "qt6-vcpkg-vs2022-debug" },
 			{ "type": "test", "name": "qt6-vcpkg-vs2022-debug" }
+		]
+	},
+	{
+	   "name": "qt6-vcpkg-vs2022-release",
+	   "steps": [
+		    { "type": "configure", "name": "qt6-vcpkg-vs2022" },
+			{ "type": "build", "name": "qt6-vcpkg-vs2022-release" },
+			{ "type": "test", "name": "qt6-vcpkg-vs2022-release" }
 		]
 	}
   ]
