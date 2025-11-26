@@ -166,6 +166,38 @@
 	],
 	"workflowPresets": [
 		{
+		   "name": "qt5-vcpkg-vs2019-debug",
+		   "steps": [
+				{ "type": "configure", "name": "qt5-vcpkg-vs2019-config" },
+				{ "type": "build", "name": "qt5-vcpkg-vs2019-build-debug" },
+				{ "type": "test", "name": "qt5-vcpkg-vs2019-test-debug" }
+			]
+		},
+		{
+		   "name": "qt5-vcpkg-vs2019-release",
+		   "steps": [
+				{ "type": "configure", "name": "qt5-vcpkg-vs2019-config" },
+				{ "type": "build", "name": "qt5-vcpkg-vs2019-build-release" },
+				{ "type": "test", "name": "qt5-vcpkg-vs2019-test-release" }
+			]
+		},
+		{
+		   "name": "qt6-vcpkg-vs2019-debug",
+		   "steps": [
+				{ "type": "configure", "name": "qt6-vcpkg-vs2019-config" },
+				{ "type": "build", "name": "qt6-vcpkg-vs2019-build-debug" },
+				{ "type": "test", "name": "qt6-vcpkg-vs2019-test-debug" }
+			]
+		},
+		{
+		   "name": "qt6-vcpkg-vs2019-release",
+		   "steps": [
+				{ "type": "configure", "name": "qt6-vcpkg-vs2019-config" },
+				{ "type": "build", "name": "qt6-vcpkg-vs2019-build-release" },
+				{ "type": "test", "name": "qt6-vcpkg-vs2019-test-release" }
+			]
+		},
+		{
 		   "name": "qt5-vcpkg-vs2022-debug",
 		   "steps": [
 				{ "type": "configure", "name": "qt5-vcpkg-vs2022-config" },
