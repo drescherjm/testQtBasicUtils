@@ -9,6 +9,24 @@
         "VCPKG_MANIFEST_INSTALL": "ON",
         "VCPKG_MANIFEST_NO_DEFAULT_FEATURES": "ON"
       }
+    },
+	{
+      "name": "base-vcpkg-qt6",
+	  "inherits": "base-vcpkg",
+      "hidden": true,
+      "cacheVariables": {
+        "VCPKG_MANIFEST_FEATURES": "qt6",
+        "SELECT_QT_VERSION": "Qt6"
+      }
+    },
+	{
+      "name": "base-vcpkg-qt5",
+	  "inherits": "base-vcpkg",
+      "hidden": true,
+      "cacheVariables": {
+        "VCPKG_MANIFEST_FEATURES": "qt5",
+        "SELECT_QT_VERSION": "Qt5"
+      }
     }
   ]
 }
