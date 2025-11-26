@@ -1,0 +1,23 @@
+{
+   "version": 6,
+   "include": ["CMakePresets-Common.json"],
+   "configurePresets": [
+        {
+            "name": "qt6-vcpkg-vs2022",
+            "inherits": "base-vcpkg",
+            "generator": "Visual Studio 17 2022",
+            "description": "Qt6 build using Visual Studio 2022 and vcpkg",
+            "binaryDir": "${sourceDir}/build",
+            "architecture": { "value": "x64" },
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
+            },
+            "cacheVariables": {
+                "VCPKG_MANIFEST_FEATURES": "qt6",
+                "SELECT_QT_VERSION": "Qt6"
+            }
+        }
+   ]
+}
